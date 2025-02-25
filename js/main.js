@@ -10,117 +10,148 @@
         }, 1);
     };
     spinner();
-    
-    
-    // Initiate the wowjs
+
+    // Initiate WOW.js
     new WOW().init();
 
-
-    // Navbar on scrolling
+    // Navbar Animation
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
-            $('.navbar').fadeIn('slow').css('display', 'flex');
+        if ($(this).scrollTop() > 100) {
+            $('.navbar').addClass('fixed-top shadow-sm').fadeIn('slow');
         } else {
-            $('.navbar').fadeOut('slow').css('display', 'none');
+            $('.navbar').removeClass('fixed-top shadow-sm').fadeOut('slow');
         }
     });
 
-
-    // Smooth scrolling on the navbar links
+    // Smooth Scrolling with Offset
     $(".navbar-nav a").on('click', function (event) {
         if (this.hash !== "") {
             event.preventDefault();
-            
+            var hash = this.hash;
             $('html, body').animate({
-                scrollTop: $(this.hash).offset().top - 45
-            }, 1500, 'easeInOutExpo');
-            
-            if ($(this).parents('.navbar-nav').length) {
-                $('.navbar-nav .active').removeClass('active');
-                $(this).closest('a').addClass('active');
-            }
+                scrollTop: $(hash).offset().top - 60
+            }, 1000, 'easeInOutExpo', function () {
+                window.location.hash = hash;
+            });
+            $('.navbar-nav .active').removeClass('active');
+            $(this).addClass('active');
         }
     });
-    
-    
-    // Back to top button
+
+    // Back to Top Button Animation
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
-            $('.back-to-top').fadeIn('slow');
+            $('.back-to-top').addClass('show').css('opacity', 1);
         } else {
-            $('.back-to-top').fadeOut('slow');
+            $('.back-to-top').removeClass('show').css('opacity', 0);
         }
     });
     $('.back-to-top').click(function () {
-        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
+        $('html, body').animate({scrollTop: 0}, 1000, 'easeInOutExpo');
         return false;
     });
-    
 
-    // Typed Initiate
+    // Typed.js Animation
     if ($('.typed-text-output').length == 1) {
         var typed_strings = $('.typed-text').text();
         var typed = new Typed('.typed-text-output', {
             strings: typed_strings.split(', '),
-            typeSpeed: 100,
-            backSpeed: 20,
-            smartBackspace: false,
-            loop: true
+            typeSpeed: 80,
+            backSpeed: 40,
+            loop: true,
+            backDelay: 2000,
+            cursorChar: '|',
+            fadeOut: true
         });
     }
 
-
-    // Modal Video
-    var $videoSrc;
-    $('.btn-play').click(function () {
-        $videoSrc = $(this).data("src");
-    });
-    console.log($videoSrc);
-    $('#videoModal').on('shown.bs.modal', function (e) {
-        $("#video").attr('src', $videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0");
-    })
-    $('#videoModal').on('hide.bs.modal', function (e) {
-        $("#video").attr('src', $videoSrc);
-    })
-
-
-    // Facts counter
-    $('[data-toggle="counter-up"]').counterUp({
-        delay: 10,
-        time: 2000
+    // Parallax Effect for Header
+    $(window).on('scroll', function () {
+        var scrollPos = $(this).scrollTop();
+        $('#home').css({
+            'background-position-y': -(scrollPos * 0.3) + 'px'
+        });
     });
 
-
-    // Skills
+    // Skills Animation
     $('.skill').waypoint(function () {
         $('.progress .progress-bar').each(function () {
-            $(this).css("width", $(this).attr("aria-valuenow") + '%');
+            var $this = $(this);
+            $this.css({
+                width: 0,
+                opacity: 0
+            });
+            setTimeout(function () {
+                $this.css({
+                    width: $this.attr("aria-valuenow") + '%',
+                    opacity: 1,
+                    transition: 'width 2s ease-in-out, opacity 0.5s ease'
+                });
+            }, 200);
         });
     }, {offset: '80%'});
 
-
-    // Portfolio isotope and filter
+    // Portfolio Filter Animation
     var portfolioIsotope = $('.portfolio-container').isotope({
         itemSelector: '.portfolio-item',
-        layoutMode: 'fitRows'
+        layoutMode: 'fitRows',
+        transitionDuration: '0.6s'
     });
     $('#portfolio-flters li').on('click', function () {
         $("#portfolio-flters li").removeClass('active');
         $(this).addClass('active');
-
-        portfolioIsotope.isotope({filter: $(this).data('filter')});
+        
+        var filterValue = $(this).data('filter');
+        portfolioIsotope.isotope({
+            filter: filterValue
+        });
+        
+        // Animate filtered items
+        $('.portfolio-item').each(function () {
+            $(this).css({
+                opacity: 0,
+                transform: 'scale(0.95)'
+            });
+            if ($(this).is(filterValue === '*' ? '.portfolio-item' : filterValue)) {
+                setTimeout(() => {
+                    $(this).css({
+                        opacity: 1,
+                        transform: 'scale(1)',
+                        transition: 'all 0.4s ease'
+                    });
+                }, 100);
+            }
+        });
     });
 
+    // Team Hover Animation
+    $('.team-item').hover(
+        function () {
+            $(this).find('.team-text').css({
+                transform: 'translateX(0)',
+                opacity: 1
+            });
+        },
+        function () {
+            $(this).find('.team-text').css({
+                transform: 'translateX(-100%)',
+                opacity: 0
+            });
+        }
+    );
 
-    // Testimonials carousel
-    $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1000,
-        items: 1,
-        dots: true,
-        loop: true,
+    // Form Validation
+    $('form').on('submit', function (e) {
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var subject = $('#subject').val();
+        var message = $('#message').val();
+        
+        if (!name || !email || !subject || !message) {
+            e.preventDefault();
+            alert('Please fill in all fields');
+            return false;
+        }
     });
 
-    
 })(jQuery);
-
