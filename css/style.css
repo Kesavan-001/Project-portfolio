@@ -1,17 +1,18 @@
 /********** Template CSS **********/
-/* Premium Feminine Theme */
+/* Premium Luxury Theme */
 :root {
-    --primary: #ff6b81;      /* Soft pink */
-    --secondary: #ffb6c1;    /* Light pink */
-    --light: #fff0f5;        /* Very light pink */
-    --dark: #4a2c3f;         /* Deep plum */
-    --accent: #ff8fa3;       /* Medium pink */
+    --primary: #1a1a2e;     /* Deep midnight blue */
+    --secondary: #e6b800;   /* Luxurious gold */
+    --light: #f5f5f5;       /* Off-white */
+    --dark: #0f0f1a;        /* Almost black */
+    --accent: #b8860b;      /* Dark gold */
 }
 
 body {
     font-family: 'Open Sans', sans-serif;
-    background: linear-gradient(135deg, var(--light) 0%, #ffffff 100%);
-    color: var(--dark);
+    background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+    color: var(--light);
+    overflow-x: hidden;
 }
 
 /* Back to Top Button */
@@ -20,16 +21,16 @@ body {
     right: 45px;
     bottom: 45px;
     z-index: 99;
-    background: var(--primary);
+    background: var(--secondary);
     border-radius: 50%;
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     transition: all 0.4s ease;
-    box-shadow: 0 4px 15px rgba(255, 107, 129, 0.3);
+    box-shadow: 0 5px 20px rgba(230, 184, 0, 0.4);
 }
 
 .back-to-top.show {
@@ -53,7 +54,7 @@ body {
     visibility: hidden;
     transition: opacity .5s ease-out, visibility 0s linear .5s;
     z-index: 99999;
-    background: rgba(255, 107, 129, 0.1);
+    background: rgba(230, 184, 0, 0.1);
 }
 
 #spinner.show {
@@ -66,20 +67,22 @@ body {
 .btn {
     font-weight: 600;
     transition: all 0.3s ease;
-    border-radius: 25px;
-    padding: 12px 30px;
+    border-radius: 0;
+    padding: 14px 35px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .btn.btn-primary {
-    background: var(--primary);
-    border: none;
-    color: #ffffff;
+    background: var(--secondary);
+    border: 2px solid var(--secondary);
+    color: var(--dark);
 }
 
 .btn.btn-primary:hover {
-    background: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 107, 129, 0.3);
+    background: transparent;
+    color: var(--secondary);
+    box-shadow: 0 5px 15px rgba(230, 184, 0, 0.3);
 }
 
 .btn-square,
@@ -89,19 +92,20 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 2px solid var(--secondary);
 }
 
 /*** Navbar ***/
 .navbar.fixed-top {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 15px rgba(255, 107, 129, 0.1);
+    background: rgba(10, 10, 26, 0.95);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     transition: all 0.5s ease;
 }
 
 .navbar .navbar-nav .nav-link {
-    padding: 20px 15px;
-    color: var(--dark);
+    padding: 20px 25px;
+    color: var(--light);
     font-size: 18px;
     font-weight: 600;
     position: relative;
@@ -114,19 +118,19 @@ body {
     width: 0;
     height: 2px;
     bottom: 10px;
-    left: 15px;
-    background: var(--primary);
+    left: 25px;
+    background: var(--secondary);
     transition: width 0.3s ease;
 }
 
 .navbar .navbar-nav .nav-link:hover::after,
 .navbar .navbar-nav .nav-link.active::after {
-    width: calc(100% - 30px);
+    width: calc(100% - 50px);
 }
 
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: var(--secondary);
 }
 
 @media (max-width: 991.98px) {
@@ -141,9 +145,11 @@ body {
 /*** Header ***/
 #home {
     margin-bottom: 6rem;
-    background: url(../img/bg-header.png) left top no-repeat;
+    background: url(../img/bg-header.png) center center no-repeat;
+    background-size: cover;
     position: relative;
     overflow: hidden;
+    border-bottom: 2px solid var(--secondary);
 }
 
 #home::before {
@@ -153,88 +159,113 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 107, 129, 0.05);
+    background: rgba(26, 26, 46, 0.7);
 }
 
 .typed-cursor {
     font-size: 30px;
-    color: var(--primary);
+    color: var(--secondary);
 }
 
 /*** About ***/
+#about {
+    background: rgba(15, 15, 26, 0.9);
+    border-radius: 10px;
+    padding: 40px;
+}
+
 #about .years .display-1 {
     font-size: 10rem;
     line-height: 9rem;
     color: var(--secondary);
-    opacity: 0.2;
+    opacity: 0.15;
 }
 
 #about .years h5 {
-    letter-spacing: 25px;
-    margin-right: -25px;
-    color: var(--primary);
+    letter-spacing: 20px;
+    margin-right: -20px;
+    color: var(--secondary);
+    text-transform: uppercase;
 }
 
 /*** Skills ***/
+#skill {
+    background: rgba(15, 15, 26, 0.9);
+    border-radius: 10px;
+    padding: 40px;
+}
+
 #skill .progress {
-    height: 8px;
-    border-radius: 4px;
-    background: rgba(255, 107, 129, 0.1);
+    height: 10px;
+    border-radius: 0;
+    background: rgba(230, 184, 0, 0.1);
 }
 
 #skill .progress .progress-bar {
-    border-radius: 4px;
-    background: linear-gradient(45deg, var(--primary), var(--accent));
+    border-radius: 0;
+    background: linear-gradient(45deg, var(--secondary), var(--accent));
     transition: width 2s ease-in-out;
 }
 
 #skill .nav-pills .nav-link {
-    color: var(--dark);
-    border-radius: 25px;
+    color: var(--light);
+    border: 2px solid var(--secondary);
+    border-radius: 0;
     transition: all 0.3s ease;
+    text-transform: uppercase;
 }
 
 #skill .nav-pills .nav-link.active {
-    color: #ffffff;
-    background: var(--primary);
+    color: var(--dark);
+    background: var(--secondary);
 }
 
 #skill .tab-content hr {
-    width: 40px;
-    height: 3px;
-    background: var(--primary);
+    width: 50px;
+    height: 4px;
+    background: var(--secondary);
 }
 
 /*** Tech Stack ***/
 .tech-item {
+    background: rgba(15, 15, 26, 0.9);
+    border: 1px solid rgba(230, 184, 0, 0.2);
     transition: all 0.3s ease;
 }
 
 .tech-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px rgba(255, 107, 129, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(230, 184, 0, 0.2);
+    border-color: var(--secondary);
 }
 
 /*** Project Portfolio ***/
+#project {
+    background: rgba(15, 15, 26, 0.9);
+    border-radius: 10px;
+    padding: 40px;
+}
+
 #portfolio-flters li {
-    padding: 10px 20px;
+    padding: 12px 25px;
     font-weight: 600;
-    color: var(--dark);
+    color: var(--light);
     cursor: pointer;
     transition: all 0.3s ease;
-    border-radius: 20px;
+    border: 2px solid var(--secondary);
+    text-transform: uppercase;
 }
 
 #portfolio-flters li:hover,
 #portfolio-flters li.active {
-    color: #ffffff;
-    background: var(--primary);
+    color: var(--dark);
+    background: var(--secondary);
 }
 
 .portfolio-img {
     position: relative;
     overflow: hidden;
-    border-radius: 15px;
+    border: 1px solid rgba(230, 184, 0, 0.2);
 }
 
 .portfolio-btn {
@@ -243,7 +274,7 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(255, 107, 129, 0.9);
+    background: rgba(230, 184, 0, 0.9);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -256,10 +287,16 @@ body {
 }
 
 /*** Team ***/
+#team {
+    background: rgba(15, 15, 26, 0.9);
+    border-radius: 10px;
+    padding: 40px;
+}
+
 .team-item {
     position: relative;
     overflow: hidden;
-    border-radius: 15px;
+    border: 1px solid rgba(230, 184, 0, 0.2);
 }
 
 .team-item img {
@@ -267,11 +304,12 @@ body {
 }
 
 .team-item:hover img {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .team-item .team-text {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 0 15px 15px 0;
-    box-shadow: 0 2px 10px rgba(255, 107, 129, 0.1);
+    background: rgba(15, 15, 26, 0.95);
+    border: 1px solid var(--secondary);
+    border-left: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
