@@ -1,35 +1,21 @@
 (function ($) {
     "use strict";
 
-    // Spinner
+    // Spinner (Remove immediately)
     var spinner = function () {
-        setTimeout(function () {
-            if ($('#spinner').length > 0) {
-                $('#spinner').removeClass('show');
-            }
-        }, 1);
+        if ($('#spinner').length > 0) {
+            $('#spinner').removeClass('show');
+        }
     };
     spinner();
 
-    // Initiate WOW.js
-    new WOW().init();
-
-    // Navbar Animation
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
-            $('.navbar').addClass('fixed-top').css({
-                'transform': 'translateY(0)',
-                'opacity': 1
-            });
-        } else {
-            $('.navbar').removeClass('fixed-top').css({
-                'transform': 'translateY(-100%)',
-                'opacity': 0
-            });
-        }
+    // Navbar (Always visible)
+    $('.navbar').addClass('fixed-top').css({
+        'transform': 'translateY(0)',
+        'opacity': 1
     });
 
-    // Smooth Scrolling with Luxury Effect
+    // Smooth Scrolling
     $(".navbar-nav a").on('click', function (event) {
         if (this.hash !== "") {
             event.preventDefault();
@@ -44,26 +30,17 @@
         }
     });
 
-    // Back to Top Button Animation
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
-            $('.back-to-top').addClass('show').css({
-                'transform': 'scale(1)',
-                'opacity': 1
-            });
-        } else {
-            $('.back-to-top').removeClass('show').css({
-                'transform': 'scale(0.5)',
-                'opacity': 0
-            });
-        }
+    // Back to Top Button (Always visible)
+    $('.back-to-top').addClass('show').css({
+        'transform': 'scale(1)',
+        'opacity': 1
     });
     $('.back-to-top').click(function () {
         $('html, body').animate({scrollTop: 0}, 1200, 'easeInOutExpo');
         return false;
     });
 
-    // Typed.js with Luxury Effect
+    // Typed.js (Runs immediately)
     if ($('.typed-text-output').length == 1) {
         var typed_strings = $('.typed-text').text();
         var typed = new Typed('.typed-text-output', {
@@ -79,34 +56,23 @@
         });
     }
 
-    // Parallax Effect for Header
-    $(window).on('scroll', function () {
-        var scrollPos = $(this).scrollTop();
-        $('#home').css({
-            'background-position-y': -(scrollPos * 0.4) + 'px',
-            'filter': 'brightness(' + (100 - scrollPos / 10) + '%)'
+    // Header Background (Static)
+    $('#home').css({
+        'background-position-y': '0px',
+        'filter': 'brightness(100%)'
+    });
+
+    // Skills Animation (Immediate)
+    $('.progress .progress-bar').each(function () {
+        var $this = $(this);
+        $this.css({
+            width: $this.attr("aria-valuenow") + '%',
+            opacity: 1,
+            transition: 'width 2.5s ease-in-out, opacity 0.8s ease'
         });
     });
 
-    // Skills Animation with Luxury Touch
-    $('.skill').waypoint(function () {
-        $('.progress .progress-bar').each(function () {
-            var $this = $(this);
-            $this.css({
-                width: 0,
-                opacity: 0
-            });
-            setTimeout(function () {
-                $this.css({
-                    width: $this.attr("aria-valuenow") + '%',
-                    opacity: 1,
-                    transition: 'width 2.5s ease-in-out, opacity 0.8s ease'
-                });
-            }, 300);
-        });
-    }, {offset: '80%'});
-
-    // Portfolio Filter Animation
+    // Portfolio Filter (All items visible immediately)
     var portfolioIsotope = $('.portfolio-container').isotope({
         itemSelector: '.portfolio-item',
         layoutMode: 'fitRows',
@@ -121,24 +87,20 @@
             filter: filterValue
         });
         
-        $('.portfolio-item').each(function () {
-            $(this).css({
-                opacity: 0,
-                transform: 'translateY(20px)'
-            });
-            if ($(this).is(filterValue === '*' ? '.portfolio-item' : filterValue)) {
-                setTimeout(() => {
-                    $(this).css({
-                        opacity: 1,
-                        transform: 'translateY(0)',
-                        transition: 'all 0.6s ease-in-out'
-                    });
-                }, 150);
-            }
+        $('.portfolio-item').css({
+            opacity: 1,
+            transform: 'translateY(0)',
+            transition: 'all 0.6s ease-in-out'
         });
     });
+    // Show all items on load
+    portfolioIsotope.isotope({ filter: '*' });
+    $('.portfolio-item').css({
+        opacity: 1,
+        transform: 'translateY(0)'
+    });
 
-    // Team Hover Animation with Luxury Effect
+    // Team Hover Animation
     $('.team-item').hover(
         function () {
             $(this).find('.team-text').css({
@@ -161,7 +123,7 @@
         }
     );
 
-    // Form Validation with Luxury Feedback
+    // Form Validation
     $('form').on('submit', function (e) {
         var name = $('#name').val();
         var email = $('#email').val();
@@ -189,16 +151,14 @@
         }
     });
 
-    // Luxury Entrance Animation
+    // Entrance Animation (Immediate)
     $(document).ready(function () {
-        $('.container-fluid, .container-xxl').each(function (index) {
+        $('.container-fluid, .container-xxl').each(function () {
             $(this).css({
-                opacity: 0,
-                transform: 'translateY(50px)'
-            }).delay(index * 200).animate({
                 opacity: 1,
-                transform: 'translateY(0)'
-            }, 800, 'easeOutExpo');
+                transform: 'translateY(0)',
+                transition: 'opacity 0.8s ease-out, transform 0.8s ease-out'
+            });
         });
     });
 
