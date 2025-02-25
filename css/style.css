@@ -1,38 +1,19 @@
 /********** Template CSS **********/
-/* Premium Luxury Theme */
 :root {
-    --primary: #1a1a2e;     /* Deep midnight blue */
-    --secondary: #e6b800;   /* Luxurious gold */
-    --light: #f5f5f5;       /* Off-white */
-    --dark: #0f0f1a;        /* Almost black */
-    --accent: #b8860b;      /* Dark gold */
+    --primary: #6244C5;
+    --secondary: #FFC448;
+    --light: #FAFAFB;
+    --dark: #12141D;
 }
 
-body {
-    font-family: 'Open Sans', sans-serif;
-    background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
-    color: var(--light);
-    overflow-x: hidden;
-}
-
-/* Back to Top Button */
 .back-to-top {
     position: fixed;
+    display: none;
     right: 45px;
     bottom: 45px;
     z-index: 99;
-    background: var(--secondary);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.4s ease;
-    box-shadow: 0 5px 20px rgba(230, 184, 0, 0.4);
 }
 
-/* Spacing Utilities */
 .my-6 {
     margin-top: 6rem;
     margin-bottom: 6rem;
@@ -43,33 +24,46 @@ body {
     padding-bottom: 6rem;
 }
 
+
 /*** Spinner ***/
 #spinner {
-    transition: opacity .5s ease-out;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
     z-index: 99999;
-    background: rgba(230, 184, 0, 0.1);
 }
+
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+}
+
 
 /*** Button ***/
 .btn {
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border-radius: 0;
-    padding: 14px 35px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-weight: 500;
+    transition: .5s;
 }
 
-.btn.btn-primary {
-    background: var(--secondary);
-    border: 2px solid var(--secondary);
-    color: var(--dark);
+.btn.btn-primary,
+.btn.btn-secondary {
+    color: #FFFFFF;
 }
 
-.btn.btn-primary:hover {
-    background: transparent;
-    color: var(--secondary);
-    box-shadow: 0 5px 15px rgba(230, 184, 0, 0.3);
+.btn-square {
+    width: 38px;
+    height: 38px;
+}
+
+.btn-sm-square {
+    width: 32px;
+    height: 32px;
+}
+
+.btn-lg-square {
+    width: 48px;
+    height: 48px;
 }
 
 .btn-square,
@@ -79,165 +73,117 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid var(--secondary);
+    font-weight: normal;
 }
+
 
 /*** Navbar ***/
 .navbar.fixed-top {
-    background: rgba(10, 10, 26, 0.95);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    display: none;
+    transition: .5s;
 }
 
 .navbar .navbar-nav .nav-link {
-    padding: 20px 25px;
-    color: var(--light);
+    padding: 20px 15px;
+    color: var(--dark);
     font-size: 18px;
     font-weight: 600;
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.navbar .navbar-nav .nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 10px;
-    left: 25px;
-    background: var(--secondary);
-    transition: width 0.3s ease;
-}
-
-.navbar .navbar-nav .nav-link:hover::after,
-.navbar .navbar-nav .nav-link.active::after {
-    width: calc(100% - 50px);
+    outline: none;
 }
 
 .navbar .navbar-nav .nav-link:hover,
 .navbar .navbar-nav .nav-link.active {
-    color: var(--secondary);
+    color: var(--primary);
 }
 
 @media (max-width: 991.98px) {
-    .navbar .navbar-nav .nav-link {
-        padding: 15px 0;
-    }
-    .navbar .navbar-nav .nav-link::after {
-        display: none;
+    .navbar .navbar-nav .nav-link  {
+        padding: 10px 0;
     }
 }
+
 
 /*** Header ***/
 #home {
     margin-bottom: 6rem;
-    background: url(../img/bg-header.png) center center no-repeat;
-    background-size: cover;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 2px solid var(--secondary);
-}
-
-#home::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(26, 26, 46, 0.7);
+    background: url(../img/bg-header.png) left top no-repeat;
 }
 
 .typed-cursor {
     font-size: 30px;
-    color: var(--secondary);
+    color: var(--dark);
 }
+
+
+
 
 /*** About ***/
-#about {
-    background: rgba(15, 15, 26, 0.9);
-    border-radius: 10px;
-    padding: 40px;
+#about .years .display-1 {
+    font-size: 10rem;
+    line-height: 9rem;
 }
+
+#about .years h5 {
+    letter-spacing: 30px;
+    margin-right: -30px;
+}
+
 
 /*** Skills ***/
-#skill {
-    background: rgba(15, 15, 26, 0.9);
-    border-radius: 10px;
-    padding: 40px;
-}
-
 #skill .progress {
-    height: 10px;
-    border-radius: 0;
-    background: rgba(230, 184, 0, 0.1);
+    height: 5px;
+    border-radius: 5px;
 }
 
 #skill .progress .progress-bar {
-    border-radius: 0;
-    background: linear-gradient(45deg, var(--secondary), var(--accent));
-    transition: width 2s ease-in-out;
+    width: 0px;
+    border-radius: 5px;
+    transition: 3s;
 }
 
 #skill .nav-pills .nav-link {
-    color: var(--light);
-    border: 2px solid var(--secondary);
-    border-radius: 0;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
+    color: var(--dark);
 }
 
 #skill .nav-pills .nav-link.active {
-    color: var(--dark);
-    background: var(--secondary);
+    color: #FFFFFF;
 }
 
 #skill .tab-content hr {
-    width: 50px;
-    height: 4px;
-    background: var(--secondary);
+    width: 30px;
 }
 
-/*** Tech Stack ***/
-.tech-item {
-    background: rgba(15, 15, 26, 0.9);
-    border: 1px solid rgba(230, 184, 0, 0.2);
-    transition: all 0.3s ease;
+
+/*** Service ***/
+.service-item .bg-icon {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(../img/bg-icon.png) center center no-repeat;
+    background-size: cover;
 }
 
-.tech-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(230, 184, 0, 0.2);
-    border-color: var(--secondary);
-}
 
 /*** Project Portfolio ***/
-#project {
-    background: rgba(15, 15, 26, 0.9);
-    border-radius: 10px;
-    padding: 40px;
-}
-
 #portfolio-flters li {
-    padding: 12px 25px;
-    font-weight: 600;
-    color: var(--light);
+    display: inline-block;
+    font-weight: 500;
+    color: var(--dark);
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: 2px solid var(--secondary);
-    text-transform: uppercase;
+    transition: .5s;
+    border-bottom: 2px solid transparent;
 }
 
 #portfolio-flters li:hover,
 #portfolio-flters li.active {
-    color: var(--dark);
-    background: var(--secondary);
+    color: var(--primary);
+    border-color: var(--primary);
 }
 
 .portfolio-img {
     position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(230, 184, 0, 0.2);
 }
 
 .portfolio-btn {
@@ -246,42 +192,53 @@ body {
     height: 100%;
     top: 0;
     left: 0;
-    background: rgba(230, 184, 0, 0.9);
+    background: rgba(98, 68, 197, .9);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 30px;
+    padding-bottom: 100px !important;
     opacity: 0;
-    transition: all 0.4s ease;
+    transition: .5s;
 }
 
 .portfolio-item:hover .portfolio-btn {
     opacity: 1;
+    padding-bottom: 30px !important;
 }
+
 
 /*** Team ***/
-#team {
-    background: rgba(15, 15, 26, 0.9);
-    border-radius: 10px;
-    padding: 40px;
-}
-
-.team-item {
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(230, 184, 0, 0.2);
-}
-
 .team-item img {
-    transition: all 0.4s ease;
+    transition: .5s;
 }
 
 .team-item:hover img {
-    transform: scale(1.1);
+    opacity: .7;
 }
 
 .team-item .team-text {
-    background: rgba(15, 15, 26, 0.95);
-    border: 1px solid var(--secondary);
-    border-left: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 0;
+    right: 60px;
+    bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    transition: .5s;
 }
+
+.team-item:hover .team-text {
+    right: 30px;
+    opacity: 1;
+}
+
+.team-item .team-text div {
+    transition: .5s;
+}
+
+.team-item:hover .team-text div {
+    margin-left: 30px;
+}
+
