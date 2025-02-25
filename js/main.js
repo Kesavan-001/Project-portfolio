@@ -1,13 +1,16 @@
 (function ($) {
     "use strict";
 
-    // Spinner (Remove immediately)
+    // Spinner
     var spinner = function () {
-        if ($('#spinner').length > 0) {
-            $('#spinner').removeClass('show');
-        }
+        setTimeout(function () {
+            if ($('#spinner').length > 0) {
+                $('#spinner').removeClass('show');
+            }
+        }, 1);
     };
     spinner();
+    
 
     // Navbar (Always visible)
     $('.navbar').addClass('fixed-top').css({
